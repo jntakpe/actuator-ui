@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="dev">
+    <meta charset="utf-8"/>
+    <meta th:content="#{app.description}" name="description"/>
+    <meta content="jntakpe" name="author"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,IE=8,chrome=1"/>
+    <![endif]-->
+
+    <title th:text="#{app.title}"></title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700" rel="stylesheet"/>
+    <link th:href="@{/bower_components/bootstrap/dist/css/bootstrap.css}" media="screen" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/bower_components/font-awesome/css/font-awesome.css}" media="screen" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/smartadmin-production.css}" media="screen" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/smartadmin-skins.css}" media="screen" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/img/favicon.ico}" rel="shortcut icon" type="image/x-icon"/>
+    <link th:href="@{/img/favicon.ico}" rel="icon" type="image/x-icon"/>
+</head>
+
+<head th:fragment="prod">
+    <meta charset="utf-8"/>
+    <meta th:content="#{app.description}" name="description"/>
+    <meta content="jntakpe" name="author"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,IE=8,chrome=1"/>
+    <![endif]-->
+
+    <title th:text="#{app.title}"></title>
+
+    <link th:href="@{/bower_components/bootstrap/dist/css/bootstrap.min.css}" media="screen" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/bower_components/font-awesome/css/font-awesome.min.css}" media="screen" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/smartadmin-production.min.css}" media="screen" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/smartadmin-skins.min.css}" media="screen" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/img/favicon.ico}" rel="shortcut icon" type="image/x-icon"/>
+    <link th:href="@{/img/favicon.ico}" rel="icon" type="image/x-icon"/>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700" rel="stylesheet"/>
+</head>
+</html>
