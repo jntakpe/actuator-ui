@@ -1,3 +1,10 @@
+i18n:
+  cache: 10
+  encoding: UTF-8
+  prefix: classpath:/localization/
+  names:
+    - gui-labels
+    - gui-messages
 info:
   app:
     name: ${project.name}
@@ -17,3 +24,10 @@ spring:
 server:
   port: 9080
   context-path: /aui
+
+---
+
+spring:
+  profiles: production
+  thymeleaf:
+    cache: true
