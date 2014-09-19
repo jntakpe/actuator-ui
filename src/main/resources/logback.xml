@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+    <property name="LOGS_FOLDER" value="${catalina.base}/logs"/>
+    <property name="OLD_LOGS_FOLDER" value="${LOGS_FOLDER}/old"/>
+    <property name="THIRD_PARTY_LOGGING_LEVEL" value="ERROR"/>
+
+    <!-- Log en console -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d{yyyy/MM/dd HH:mm:ss,SSS} [%thread] %-5level %logger{36} - %m %throwable{0}%n</Pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <!-- Log les erreurs ou les dysfonctionnements -->
+    <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS_FOLDER}/actuator-ui.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${OLD_LOGS_FOLDER}/eers.%d{yyyyMMdd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss,SSS} [%thread] %-5level %logger{36} - %m %throwable{0}%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Log retraçant les actions des utilisateurs -->
+    <appender name="auditfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS_FOLDER}/actuator-ui-audit.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${OLD_LOGS_FOLDER}/eers-audit.%d{yyyyMMdd}.log.gzip</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%m %throwable{0}%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Log de diagnostic permettant ayant pour but de pouvoir retracer un comportement -->
+    <appender name="troubleshootingfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS_FOLDER}/actuator-ui-troubleshooting.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${LOGS_FOLDER}/eers-troubleshooting.%i.log</fileNamePattern>
+            <maxIndex>10</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss,SSS} [%thread] %-5level %logger{36} - %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Géré automatiquement par AOP -->
+    <logger name="audit-log" additivity="false" level="TRACE">
+        <appender-ref ref="auditfile"/>
+        <appender-ref ref="console"/>
+    </logger>
+
+    <!-- Géré par AOP et lors d'appels normaux à l'intérieur de l'application -->
+    <logger name="com.github.jntakpe" level="TRACE">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <!-- Tous les messages de n'importe quel framework ayant à minima le niveau WARN -->
+    <root level="WARN">
+        <appender-ref ref="logfile"/>
+        <appender-ref ref="console"/>
+    </root>
+
+    <!-- Liste des loggers pour les librairies tierces -->
+    <logger name="ch.qos.logback" level="${THIRD_PARTY_LOGGING_LEVEL}">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.apache" level="${THIRD_PARTY_LOGGING_LEVEL}">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.hibernate" level="${THIRD_PARTY_LOGGING_LEVEL}">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.springframework" level="${THIRD_PARTY_LOGGING_LEVEL}">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.springframework.web" level="${THIRD_PARTY_LOGGING_LEVEL}">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.springframework.security" level="${THIRD_PARTY_LOGGING_LEVEL}">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.springframework.cache" level="${THIRD_PARTY_LOGGING_LEVEL}">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.thymeleaf" level="${THIRD_PARTY_LOGGING_LEVEL}">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+</configuration>
