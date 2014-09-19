@@ -1,0 +1,25 @@
+
+
+
+
+
+               AAA                                         tttt                                                      tttt                                                    UUUUUUUU     UUUUUUUUIIIIIIIIII
+              A:::A                                     ttt:::t                                                   ttt:::t                                                    U::::::U     U::::::UI::::::::I
+             A:::::A                                    t:::::t                                                   t:::::t                                                    U::::::U     U::::::UI::::::::I
+            A:::::::A                                   t:::::t                                                   t:::::t                                                    UU:::::U     U:::::UUII::::::II
+           A:::::::::A            ccccccccccccccccttttttt:::::ttttttt    uuuuuu    uuuuuu    aaaaaaaaaaaaa  ttttttt:::::ttttttt       ooooooooooo   rrrrr   rrrrrrrrr         U:::::U     U:::::U   I::::I
+          A:::::A:::::A         cc:::::::::::::::ct:::::::::::::::::t    u::::u    u::::u    a::::::::::::a t:::::::::::::::::t     oo:::::::::::oo r::::rrr:::::::::r        U:::::D     D:::::U   I::::I
+         A:::::A A:::::A       c:::::::::::::::::ct:::::::::::::::::t    u::::u    u::::u    aaaaaaaaa:::::at:::::::::::::::::t    o:::::::::::::::or:::::::::::::::::r       U:::::D     D:::::U   I::::I
+        A:::::A   A:::::A     c:::::::cccccc:::::ctttttt:::::::tttttt    u::::u    u::::u             a::::atttttt:::::::tttttt    o:::::ooooo:::::orr::::::rrrrr::::::r      U:::::D     D:::::U   I::::I
+       A:::::A     A:::::A    c::::::c     ccccccc      t:::::t          u::::u    u::::u      aaaaaaa:::::a      t:::::t          o::::o     o::::o r:::::r     r:::::r      U:::::D     D:::::U   I::::I
+      A:::::AAAAAAAAA:::::A   c:::::c                   t:::::t          u::::u    u::::u    aa::::::::::::a      t:::::t          o::::o     o::::o r:::::r     rrrrrrr      U:::::D     D:::::U   I::::I
+     A:::::::::::::::::::::A  c:::::c                   t:::::t          u::::u    u::::u   a::::aaaa::::::a      t:::::t          o::::o     o::::o r:::::r                  U:::::D     D:::::U   I::::I
+    A:::::AAAAAAAAAAAAA:::::A c::::::c     ccccccc      t:::::t    ttttttu:::::uuuu:::::u  a::::a    a:::::a      t:::::t    tttttto::::o     o::::o r:::::r                  U::::::U   U::::::U   I::::I
+   A:::::A             A:::::Ac:::::::cccccc:::::c      t::::::tttt:::::tu:::::::::::::::uua::::a    a:::::a      t::::::tttt:::::to:::::ooooo:::::o r:::::r                  U:::::::UUU:::::::U II::::::II
+  A:::::A               A:::::Ac:::::::::::::::::c      tt::::::::::::::t u:::::::::::::::ua:::::aaaa::::::a      tt::::::::::::::to:::::::::::::::o r:::::r                   UU:::::::::::::UU  I::::::::I
+ A:::::A                 A:::::Acc:::::::::::::::c        tt:::::::::::tt  uu::::::::uu:::u a::::::::::aa:::a       tt:::::::::::tt oo:::::::::::oo  r:::::r                     UU:::::::::UU    I::::::::I
+AAAAAAA                   AAAAAAA cccccccccccccccc          ttttttttttt      uuuuuuuu  uuuu  aaaaaaaaaa  aaaa         ttttttttttt     ooooooooooo    rrrrrrr                       UUUUUUUUU      IIIIIIIIII
+
+                                                                                           :: ${project.name} ::
+                                                                                           :: Version ${project.version} ::
+
