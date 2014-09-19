@@ -1,0 +1,16 @@
+{
+    "name": "actuator-ui",
+    "version": "1.0.0-SNAPSHOT",
+    "dependencies": {
+        "jquery": "latest",
+        "jquery-ui": "latest",
+        "bootstrap": "3.2.0",
+        "jquery.easy-pie-chart": "latest",
+        "jquery-validation": "latest",
+        "jquery.maskedinput": "latest",
+        "jquery.sparkline": "latest",
+        "select2": "latest",
+        "seiyria-bootstrap-slider": "latest",
+        "font-awesome": "4.1.0"
+    }
+}
