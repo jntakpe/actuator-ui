@@ -44,7 +44,8 @@ public class ActuatorUiConfig extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         LOG.debug("Démarrage de l'application en mode 'classique'");
         Profile profile = resolveProfile();
-        LOG.debug("Profil '{}'sélectionné", profile.getConstant());
+        LOG.debug("Profil '{}' sélectionné", profile.getConstant());
+        application.profiles(profile.getConstant());
         return application.sources(ActuatorUiConfig.class);
     }
 

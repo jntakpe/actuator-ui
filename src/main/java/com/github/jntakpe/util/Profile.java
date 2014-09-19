@@ -33,4 +33,13 @@ public enum Profile {
         }
 
     }
+
+    /**
+     * Indique si le profil courant est un profil de développement (embedded ou développement)
+     *
+     * @return true si l'application est sur un profil de développement
+     */
+    public boolean isDevProfile() {
+        return this == EMBEDDED || this == DEVELOPPEMENT;
+    }
 }
