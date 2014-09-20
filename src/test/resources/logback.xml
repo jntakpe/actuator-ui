@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <!-- Log en console -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d{yyyy/MM/dd HH:mm:ss,SSS} [%thread] %-5level %logger{36} - %m %throwable{0}%n</Pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <!-- Géré automatiquement par AOP -->
+    <logger name="audit-log" additivity="false" level="TRACE">
+        <appender-ref ref="console"/>
+    </logger>
+
+    <!-- Tous les messages de n'importe quel framework ayant à minima le niveau WARN -->
+    <root level="DEBUG">
+        <appender-ref ref="console"/>
+    </root>
+
+    <!-- Liste des loggers pour les librairies tierces -->
+    <logger name="ch.qos.logback" level="WARN">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.apache" level="WARN">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.hibernate" level="WARN">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.springframework" level="WARN">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.springframework.web" level="WARN">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.springframework.security" level="WARN">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.springframework.cache" level="WARN">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+    <logger name="org.thymeleaf" level="WARN">
+        <appender-ref ref="troubleshootingfile"/>
+    </logger>
+
+</configuration>

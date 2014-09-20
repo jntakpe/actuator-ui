@@ -1,0 +1,11 @@
+i18n:
+  cache: 10
+  encoding: UTF-8
+  prefix: classpath:/localization/
+  names:
+    - gui-labels
+    - gui-messages
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost/aui-test

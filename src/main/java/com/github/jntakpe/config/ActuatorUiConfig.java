@@ -9,6 +9,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 /**
  * Classe permettant de lancer et de configurer l'application
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan("com.github.jntakpe")
+@EnableMongoRepositories(basePackages = "com.github.jntakpe.repository")
 public class ActuatorUiConfig extends SpringBootServletInitializer {
 
     private static Logger LOG = LoggerFactory.getLogger(ActuatorUiConfig.class);

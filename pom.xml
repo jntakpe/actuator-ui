@@ -4,7 +4,7 @@
     <groupId>com.github.jntakpe</groupId>
     <artifactId>actuator-ui</artifactId>
     <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>actuator-ui</name>
     <description>Interface de monitoring des applications Spring Boot</description>
     <url>http://www.github.com/jntakpe/actuator-ui</url>
@@ -19,6 +19,8 @@
         <java.version>1.8</java.version>
         <tomcat.version>8.0.12</tomcat.version>
         <spring.version>4.1.0.RELEASE</spring.version>
+        <assertj.version>1.2.0</assertj.version>
+        <testng.version>6.8.8</testng.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
     </properties>
 
@@ -43,6 +45,18 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
