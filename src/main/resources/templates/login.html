@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html id="extr-page" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/head :: ${isDevMode} ? 'dev' : 'prod'"></head>
+
+<body class="animated fadeInDown">
+<header id="header">
+    <div id="logo-group">
+        <span id="logo"><img alt="ActuatorUILogo" th:src="@{/img/logo.png}"/></span>
+    </div>
+    <span id="extr-page-header-space"><span class="hidden-mobile" th:text="#{login.no.account}"></span>
+        <a th:href="@{/register}" class="btn btn-danger" th:text="#{login.btn.register}"></a></span>
+</header>
+
+<div id="main" role="main">
+    <div id="content" class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
+                <h1 class="txt-color-red login-header-big">
+                    <span th:text="#{login.title}"></span> -
+                    <small><span th:text="#{login.title.description}"></span></small>
+                </h1>
+                <div class="hero">
+                    <div class="pull-left login-desc-box-l">
+                        <h4 class="paragraph-header" th:text="#{login.description.app}"></h4>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+                <div class="well no-padding">
+                    <form th:action="@{/login}" id="login-form" class="smart-form client-form">
+                        <header th:text="#{login.header}"></header>
+                        <fieldset>
+                            <section>
+                                <label class="label" th:text="#{login.username}"></label>
+                                <label class="input"> <i class="icon-append fa fa-user"></i>
+                                    <input name="login" type="text" th:placeholder="#{login.username}"/>
+                                    <b class="tooltip tooltip-top-right">
+                                        <i class="fa fa-user txt-color-teal"></i> <span th:text="#{login.username.msg}"></span>
+                                    </b>
+                                </label>
+                            </section>
+                            <section>
+                                <label class="label" th:text="#{login.password}"></label>
+                                <label class="input"> <i class="icon-append fa fa-lock"></i>
+                                    <input name="password" type="password" th:placeholder="#{login.password}"/>
+                                    <b class="tooltip tooltip-top-right">
+                                        <i class="fa fa-lock txt-color-teal"></i> <span th:text="#{login.password.msg}"></span>
+                                    </b>
+                                </label>
+                            </section>
+                            <section>
+                                <label class="checkbox">
+                                    <input name="rememberMe" checked="" type="checkbox" />
+                                    <i></i><span th:text="#{login.remember.me}"></span></label>
+                            </section>
+                        </fieldset>
+                        <footer>
+                            <button type="submit" class="btn btn-primary">
+                                <span th:text="#{login.signin}"></span>
+                            </button>
+                        </footer>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="/fragments/jslibs :: ${isDevMode} ? 'dev' : 'prod'"></div>
+<script type="text/javascript">
+    $(function () {
+        pageSetUp();
+        $("#login-form").validate({
+            rules: {
+                login: {
+                    required: true
+                },
+                password: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 20
+                }
+            },
+            messages: {
+                login: {
+                    required: 'Veuillez saisir votre login'
+                },
+                password: {
+                    required: 'Veuillez renseigner votre mot de passe'
+                }
+            },
+            errorPlacement: function (error, element) {
+                error.insertAfter(element.parent());
+            }
+        });
+    });
+</script>
+</body>
+</html>
