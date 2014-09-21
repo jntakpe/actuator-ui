@@ -1,17 +1,13 @@
 package com.github.jntakpe.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.springframework.data.annotation.Id;
 
 /**
  * Bean représentant un projet monitoré
  *
  * @author jntakpe
  */
-public class Project {
-
-    @Id
-    private String id;
+public class Project extends MongoEntity {
 
     private String name;
 
@@ -30,14 +26,6 @@ public class Project {
 
     public String getName() {
         return name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public void setName(String name) {

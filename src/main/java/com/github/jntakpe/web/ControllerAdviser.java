@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @ControllerAdvice
 public class ControllerAdviser {
 
+    private final Environment environment;
+
     @Autowired
-    private Environment environment;
+    public ControllerAdviser(Environment environment) {
+        this.environment = environment;
+    }
 
     /**
      * Indique aux vues si l'application est sur un profil de développement

@@ -17,7 +17,7 @@ public class ProjectController {
 
     public static final String VIEW_PATH = "projects";
 
-    private ProjectService projectService;
+    private final ProjectService projectService;
 
     @Autowired
     public ProjectController(ProjectService projectService) {

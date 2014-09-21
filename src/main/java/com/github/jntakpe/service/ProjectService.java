@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProjectService {
 
-    private ProjectRepository projectRepository;
+    private final ProjectRepository projectRepository;
 
     @Autowired
     public ProjectService(ProjectRepository projectRepository) {

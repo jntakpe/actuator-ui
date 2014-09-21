@@ -7,8 +7,8 @@
     <div id="logo-group">
         <span id="logo"><img alt="ActuatorUILogo" th:src="@{/img/logo.png}"/></span>
     </div>
-    <span id="extr-page-header-space"><span class="hidden-mobile" th:text="#{login.no.account}"></span>
-        <a th:href="@{/register}" class="btn btn-danger" th:text="#{login.btn.register}"></a></span>
+    <span id="extr-page-header-space"><span class="hidden-mobile" th:text="#{login.already.user}"></span>
+        <a th:href="@{/login}" class="btn btn-danger" th:text="#{register.btn.login}"></a></span>
 </header>
 
 <div id="main" role="main">
@@ -27,41 +27,37 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                 <div class="well no-padding">
-                    <form th:action="@{/authenticate}" id="login-form" class="smart-form client-form" method="post">
-                        <header th:text="#{login.header}"></header>
+                    <form th:action="@{/register}" id="register-form" class="smart-form client-form" method="post" th:object="${user}">
+                        <header th:text="#{register.header}"></header>
                         <fieldset>
-                            <div th:if="${errorMsg != null}" class="alert adjusted alert-danger fade in">
-                                <button class="close" data-dismiss="alert">x</button>
-                                <i class="fa-fw fa-lg fa fa-exclamation"></i>
-                                <strong th:text="#{login.error}"></strong> <span th:text="${errorMsg}"></span>
-                            </div>
                             <section>
-                                <label class="label" th:text="#{login.username}"></label>
+                                <label class="label" th:text="#{register.username}"></label>
                                 <label class="input"> <i class="icon-append fa fa-user"></i>
-                                    <input name="username" type="text" th:placeholder="#{login.username}"/>
-                                    <b class="tooltip tooltip-top-right">
-                                        <i class="fa fa-user txt-color-teal"></i> <span th:text="#{login.username.msg}"></span>
-                                    </b>
+                                    <input th:field="*{login}" type="text" th:placeholder="#{register.username}"/>
                                 </label>
                             </section>
                             <section>
-                                <label class="label" th:text="#{login.password}"></label>
+                                <label class="label" th:text="#{register.email}"></label>
+                                <label class="input"> <i class="icon-append fa fa-user"></i>
+                                    <input th:field="*{email}" type="email" th:placeholder="#{register.email}"/>
+                                </label>
+                            </section>
+                            <section>
+                                <label class="label" th:text="#{register.password}"></label>
                                 <label class="input"> <i class="icon-append fa fa-lock"></i>
-                                    <input name="password" type="password" th:placeholder="#{login.password}"/>
-                                    <b class="tooltip tooltip-top-right">
-                                        <i class="fa fa-lock txt-color-teal"></i> <span th:text="#{login.password.msg}"></span>
-                                    </b>
+                                    <input th:field="*{password}" type="password" th:placeholder="#{register.password}"/>
                                 </label>
                             </section>
                             <section>
-                                <label class="checkbox">
-                                    <input name="rememberMe" checked="" type="checkbox"/>
-                                    <i></i><span th:text="#{login.remember.me}"></span></label>
+                                <label class="label" th:text="#{register.confirm.password}"></label>
+                                <label class="input"> <i class="icon-append fa fa-lock"></i>
+                                    <input th:field="*{confirmPassword}" type="password" th:placeholder="#{register.confirm.password}"/>
+                                </label>
                             </section>
                         </fieldset>
                         <footer>
                             <button type="submit" class="btn btn-primary">
-                                <span th:text="#{login.signin}"></span>
+                                <span th:text="#{register.action}"></span>
                             </button>
                         </footer>
                     </form>
@@ -74,15 +70,25 @@
 <script type="text/javascript">
     $(function () {
         runAllForms();
-        $("#login-form").auiValidate({
+        $("#register-form").auiValidate({
             rules: {
                 username: {
                     required: true
+                },
+                email: {
+                    required: true,
+                    email: true
                 },
                 password: {
                     required: true,
                     minlength: 3,
                     maxlength: 20
+                },
+                confirmPassword: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 20,
+                    equalTo: "#password"
                 }
             }
         });

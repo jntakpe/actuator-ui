@@ -65,7 +65,7 @@
         <appender-ref ref="troubleshootingfile"/>
     </logger>
 
-    <!-- Tous les messages de n'importe quel framework ayant à minima le niveau WARN -->
+    <!-- Tous les messages de n'importe quel framework -->
     <root level="WARN">
         <appender-ref ref="logfile"/>
         <appender-ref ref="console"/>
