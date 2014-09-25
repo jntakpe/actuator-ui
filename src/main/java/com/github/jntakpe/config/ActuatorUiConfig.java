@@ -26,6 +26,8 @@ public class ActuatorUiConfig extends SpringBootServletInitializer {
 
     private static final String ACTIVE_PROFILE = "spring.profiles.active";
 
+    private static Profile currentProfile;
+
     /**
      * Démarre l'application en mode 'embedded'
      *
@@ -45,9 +47,9 @@ public class ActuatorUiConfig extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         LOG.debug("Démarrage de l'application en mode 'classique'");
-        Profile profile = resolveProfile();
-        LOG.debug("Profil '{}' sélectionné", profile.getConstant());
-        application.profiles(profile.getConstant());
+        currentProfile = resolveProfile();
+        LOG.debug("Profil '{}' sélectionné", currentProfile.getConstant());
+        application.profiles(currentProfile.getConstant());
         return application.sources(ActuatorUiConfig.class);
     }
 
@@ -63,5 +65,14 @@ public class ActuatorUiConfig extends SpringBootServletInitializer {
             return Profile.DEVELOPPEMENT;
         }
         return Profile.valueOf(profile.toUpperCase());
+    }
+
+    /**
+     * Renvoie le profil courant
+     *
+     * @return profil courante
+     */
+    public static Profile getCurrentProfile() {
+        return currentProfile;
     }
 }

@@ -45,7 +45,7 @@ public class LocalizationConfig {
             messageSource.setCacheSeconds(localizationProperties.getCache());
         }
         messageSource.setDefaultEncoding(localizationProperties.getEncoding());
-        LOG.trace("Internationalisation des messages configuré");
+        LOG.trace("Internationalisation des messages configurée");
         return messageSource;
     }
 
