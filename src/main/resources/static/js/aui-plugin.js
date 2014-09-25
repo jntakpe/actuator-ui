@@ -13,7 +13,9 @@ $.validator.setDefaults({
         if (element.type === "radio") {
             this.findByName(element.name).removeClass(errorClass).addClass(validClass).parent().addClass('state-success').removeClass('state-error');
         } else {
-            $(element).removeClass(errorClass).addClass(validClass).parent().addClass('state-success').removeClass('state-error');
+            var $parent = $(element).removeClass(errorClass).addClass(validClass).parent();
+            $parent.addClass('state-success').removeClass('state-error');
+            $parent.next('em.invalid').remove();
         }
     }
 });

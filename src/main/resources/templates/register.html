@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html id="extr-page" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/head :: ${isDevMode} ? 'dev' : 'prod'"></head>
+<head th:replace="/fragments/head :: ${application.isDevMode} ? 'dev' : 'prod'"></head>
 
 <body class="animated fadeInDown">
 <header id="header">
@@ -32,27 +32,37 @@
                         <fieldset>
                             <section>
                                 <label class="label" th:text="#{register.username}"></label>
-                                <label class="input"> <i class="icon-append fa fa-user"></i>
-                                    <input th:field="*{login}" type="text" th:placeholder="#{register.username}"/>
+                                <label th:class="${#fields.hasErrors('login')} ? 'input state-error' : 'input'">
+                                    <i class="icon-append fa fa-user"></i>
+                                    <input th:field="*{login}" type="text" th:placeholder="#{register.username}" th:errorclass="invalid"/>
                                 </label>
+                                <em class="invalid" th:errors="*{login}"></em>
                             </section>
                             <section>
                                 <label class="label" th:text="#{register.email}"></label>
-                                <label class="input"> <i class="icon-append fa fa-user"></i>
-                                    <input th:field="*{email}" type="email" th:placeholder="#{register.email}"/>
+                                <label th:class="${#fields.hasErrors('email')} ? 'input state-error' : 'input'">
+                                    <i class="icon-append fa fa-user"></i>
+                                    <input th:field="*{email}" type="email" th:placeholder="#{register.email}" th:errorclass="invalid"/>
                                 </label>
+                                <em class="invalid" th:errors="*{email}"></em>
                             </section>
                             <section>
                                 <label class="label" th:text="#{register.password}"></label>
-                                <label class="input"> <i class="icon-append fa fa-lock"></i>
-                                    <input th:field="*{password}" type="password" th:placeholder="#{register.password}"/>
+                                <label th:class="${#fields.hasErrors('password')} ? 'input state-error' : 'input'">
+                                    <i class="icon-append fa fa-lock"></i>
+                                    <input th:field="*{password}" type="password" th:placeholder="#{register.password}"
+                                           th:errorclass="invalid"/>
                                 </label>
+                                <em class="invalid" th:errors="*{password}"></em>
                             </section>
                             <section>
                                 <label class="label" th:text="#{register.confirm.password}"></label>
-                                <label class="input"> <i class="icon-append fa fa-lock"></i>
-                                    <input th:field="*{confirmPassword}" type="password" th:placeholder="#{register.confirm.password}"/>
+                                <label th:class="${#fields.hasErrors('confirmPassword')} ? 'input state-error' : 'input'">
+                                    <i class="icon-append fa fa-lock"></i>
+                                    <input th:field="*{confirmPassword}" type="password" th:placeholder="#{register.confirm.password}"
+                                           th:errorclass="invalid"/>
                                 </label>
+                                <em class="invalid" th:errors="*{confirmPassword}"></em>
                             </section>
                         </fieldset>
                         <footer>
@@ -66,7 +76,7 @@
         </div>
     </div>
 </div>
-<div th:replace="/fragments/jslibs :: ${isDevMode} ? 'dev' : 'prod'"></div>
+<div th:replace="/fragments/jslibs :: ${application.isDevMode} ? 'dev' : 'prod'"></div>
 <script type="text/javascript">
     $(function () {
         runAllForms();

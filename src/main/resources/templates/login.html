@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html id="extr-page" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/head :: ${isDevMode} ? 'dev' : 'prod'"></head>
+<head th:replace="/fragments/head :: ${application.isDevMode} ? 'dev' : 'prod'"></head>
 
 <body class="animated fadeInDown">
 <header id="header">
@@ -70,7 +70,7 @@
         </div>
     </div>
 </div>
-<div th:replace="/fragments/jslibs :: ${isDevMode} ? 'dev' : 'prod'"></div>
+<div th:replace="/fragments/jslibs :: ${application.isDevMode} ? 'dev' : 'prod'"></div>
 <script type="text/javascript">
     $(function () {
         runAllForms();

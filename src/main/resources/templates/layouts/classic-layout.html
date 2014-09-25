@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head layout:fragment="head" th:replace="/fragments/head :: ${isDevMode} ? 'dev' : 'prod'"></head>
+<head layout:fragment="head" th:replace="/fragments/head :: ${application.isDevMode} ? 'dev' : 'prod'"></head>
 <body>
 <div layout:fragment="header" th:replace="/fragments/header :: default"></div>
 <aside layout:fragment="aside" th:replace="/fragments/aside :: default"></aside>
@@ -11,7 +11,7 @@
     </div>
 </div>
 <div layout:fragment="footer" th:replace="/fragments/footer :: default"></div>
-<div layout:fragment="jslibs" th:replace="/fragments/jslibs :: ${isDevMode} ? 'dev' : 'prod'"></div>
+<div layout:fragment="jslibs" th:replace="/fragments/jslibs :: ${application.isDevMode} ? 'dev' : 'prod'"></div>
 <div layout:fragment="specificjs"></div>
 </body>
 </html>
