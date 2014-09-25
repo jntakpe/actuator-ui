@@ -1,3 +1,7 @@
+body {
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
 #extr-page h4.paragraph-header {
     width: auto;
 }

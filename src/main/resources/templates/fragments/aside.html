@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <aside id="left-panel" th:fragment="default">
     <div class="login-info">
     <span>
-    <a href="javascript:void(0);" id="show-shortcut"><img alt="me" class="online" src="img/avatars/sunny.png"/><span>John DOE</span></a>
+    <a href="javascript:void(0);" id="show-shortcut"><img alt="me" class="online" src="img/avatars/sunny.png"/>
+        <span sec:authentication="name"></span>
+    </a>
     </span>
     </div>
     <nav>
