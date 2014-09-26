@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Social footer -->
+<footer th:fragment="socialFooter" class="navbar navbar-default navbar-fixed-bottom copyright">
+    <div class="container">
+        <div class="col-md-6">
+            <p class="copyright-space">
+                <span th:text="#{app.name}"></span> | <span th:text="#{app.version}"></span>
+            </p>
+        </div>
+        <div class="col-md-2">
+            <ul class="social-icons">
+                <li><a href="https://github.com/jntakpe" data-original-title="Github" class="social_github"></a></li>
+                <li><a href="https://twitter.com/jntakpe" data-original-title="Twitter" class="social_twitter"></a></li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <p class="copyright-space pull-right">
+                <a href="mailto:jocelyn.ntakpe@sopra.com">
+                    <span class="fa fa-envelope"></span> <span th:text="#{app.contact}"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

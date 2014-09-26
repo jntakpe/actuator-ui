@@ -23,6 +23,8 @@ import javax.validation.Valid;
 @Controller
 public class SecurityController {
 
+    private static final String HOME_VIEW = "home";
+
     private static final String LOGIN_VIEW = "login";
 
     private static final String REGISTER_VIEW = "register";
@@ -35,6 +37,11 @@ public class SecurityController {
     public SecurityController(MessageManager messageManager, UserService userService) {
         this.messageManager = messageManager;
         this.userService = userService;
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String displayHome() {
+        return HOME_VIEW;
     }
 
     /**
@@ -71,11 +78,13 @@ public class SecurityController {
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView register(@Valid User user, BindingResult result) {
-        if (result.hasErrors() || !user.getPassword().equals(user.getConfirmPassword())) {
-            result.addError(new FieldError("user", "confirmPassword", messageManager.getMessage("error.register.confirm.password")));
-            return new ModelAndView("register");
+        if (result.hasErrors()) {
+            if (!user.getPassword().equals(user.getConfirmPassword())) {
+                result.addError(new FieldError("user", "confirmPassword", messageManager.getMessage("error.register.confirm.password")));
+            }
+            return new ModelAndView(REGISTER_VIEW);
         }
         userService.create(user);
-        return new ModelAndView(new RedirectView("login"));
+        return new ModelAndView(new RedirectView(LOGIN_VIEW));
     }
 }

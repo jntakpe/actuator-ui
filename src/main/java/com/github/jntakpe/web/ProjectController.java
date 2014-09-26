@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author jntakpe
  */
 @Controller
-@RequestMapping("/projects")
+@RequestMapping("/project")
 public class ProjectController {
 
     public static final String VIEW_PATH = "projects";

@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 /**
  * Entité représentant un utilisateur
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
 public class User extends MongoEntity {
 
     @NotEmpty
+    @Size(min = 3)
     private String login;
 
     @Email
@@ -27,6 +29,8 @@ public class User extends MongoEntity {
 
     @Transient
     private String confirmPassword;
+
+    private Date lastConnection;
 
     public String getLogin() {
         return login;
@@ -58,6 +62,14 @@ public class User extends MongoEntity {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public Date getLastConnection() {
+        return lastConnection;
+    }
+
+    public void setLastConnection(Date lastConnection) {
+        this.lastConnection = lastConnection;
     }
 
     @Override

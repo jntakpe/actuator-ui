@@ -1,7 +1,7 @@
-body {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+.header .navbar-header .navbar-brand {
+    top: -25px;
 }
 
-#extr-page h4.paragraph-header {
-    width: auto;
+.header .topbar {
+    padding-bottom: 0;
 }

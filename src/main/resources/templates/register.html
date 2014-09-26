@@ -1,89 +1,88 @@
 <!DOCTYPE html>
-<html id="extr-page" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:with="title=#{register.title}, css='login-register'">
 <head th:replace="/fragments/head :: ${application.isDevMode} ? 'dev' : 'prod'"></head>
+<body>
+<div class="container">
+    <div class="reg-block">
+        <div class="reg-block-header">
+            <h2 th:text="#{register.title}"></h2>
 
-<body class="animated fadeInDown">
-<header id="header">
-    <div id="logo-group">
-        <span id="logo"><img alt="ActuatorUILogo" th:src="@{/img/logo.png}"/></span>
-    </div>
-    <span id="extr-page-header-space"><span class="hidden-mobile" th:text="#{login.already.user}"></span>
-        <a th:href="@{/login}" class="btn btn-danger" th:text="#{register.btn.login}"></a></span>
-</header>
-
-<div id="main" role="main">
-    <div id="content" class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
-                <h1 class="txt-color-red login-header-big">
-                    <span th:text="#{login.title}"></span> -
-                    <small><span th:text="#{login.title.description}"></span></small>
-                </h1>
-                <div class="hero">
-                    <div class="pull-left login-desc-box-l">
-                        <h4 class="paragraph-header" th:text="#{login.description.app}"></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-                <div class="well no-padding">
-                    <form th:action="@{/register}" id="register-form" class="smart-form client-form" method="post" th:object="${user}">
-                        <header th:text="#{register.header}"></header>
-                        <fieldset>
-                            <section>
-                                <label class="label" th:text="#{register.username}"></label>
-                                <label th:class="${#fields.hasErrors('login')} ? 'input state-error' : 'input'">
-                                    <i class="icon-append fa fa-user"></i>
-                                    <input th:field="*{login}" type="text" th:placeholder="#{register.username}" th:errorclass="invalid"/>
-                                </label>
-                                <em class="invalid" th:errors="*{login}"></em>
-                            </section>
-                            <section>
-                                <label class="label" th:text="#{register.email}"></label>
-                                <label th:class="${#fields.hasErrors('email')} ? 'input state-error' : 'input'">
-                                    <i class="icon-append fa fa-user"></i>
-                                    <input th:field="*{email}" type="email" th:placeholder="#{register.email}" th:errorclass="invalid"/>
-                                </label>
-                                <em class="invalid" th:errors="*{email}"></em>
-                            </section>
-                            <section>
-                                <label class="label" th:text="#{register.password}"></label>
-                                <label th:class="${#fields.hasErrors('password')} ? 'input state-error' : 'input'">
-                                    <i class="icon-append fa fa-lock"></i>
-                                    <input th:field="*{password}" type="password" th:placeholder="#{register.password}"
-                                           th:errorclass="invalid"/>
-                                </label>
-                                <em class="invalid" th:errors="*{password}"></em>
-                            </section>
-                            <section>
-                                <label class="label" th:text="#{register.confirm.password}"></label>
-                                <label th:class="${#fields.hasErrors('confirmPassword')} ? 'input state-error' : 'input'">
-                                    <i class="icon-append fa fa-lock"></i>
-                                    <input th:field="*{confirmPassword}" type="password" th:placeholder="#{register.confirm.password}"
-                                           th:errorclass="invalid"/>
-                                </label>
-                                <em class="invalid" th:errors="*{confirmPassword}"></em>
-                            </section>
-                        </fieldset>
-                        <footer>
-                            <button type="submit" class="btn btn-primary">
-                                <span th:text="#{register.action}"></span>
-                            </button>
-                        </footer>
-                    </form>
-                </div>
-            </div>
+            <ul class="social-icons text-center margin-bottom-10">
+                <li><a class="rounded-x social_github" data-original-title="Github"
+                       href="https://github.com/jntakpe"></a></li>
+                <li><a class="rounded-x social_twitter" data-original-title="Twitter"
+                       href="https://twitter.com/jntakpe"></a></li>
+            </ul>
+            <p>
+                <span th:text="#{register.logon.msg}"></span>
+                <a th:href="@{/login}">
+                    <span class="label label-red">
+                        <i class="fa fa-sign-in"></i> <span th:text="#{register.logon}"></span>
+                    </span>
+                </a>
+            </p>
         </div>
+        <form id="register" th:action="@{/register}" class="sky-form" method="post" th:object="${user}">
+            <div class="form-group">
+                <div class="input-group margin-bottom-20">
+                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                    <input class="form-control" th:field="*{login}" th:placeholder="#{register.login}" type="text"
+                           required="true"
+                           maxlength="50"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group margin-bottom-20">
+                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                    <input class="form-control" th:field="*{email}" th:placeholder="#{register.email}" type="email"
+                           required="true"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group margin-bottom-20">
+                    <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                    <input class="form-control" th:field="*{password}" th:placeholder="#{register.password}"
+                           type="password"
+                           required="true" maxlength="100"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group margin-bottom-30">
+                    <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                    <input class="form-control" name="confirmPassword" th:placeholder="#{register.confirmPassword}"
+                           type="password"
+                           required="true" maxlength="100"/>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <button type="submit" class="btn-u btn-block"><i class="fa fa-plus"></i> <span
+                            th:text="#{register.btn.signin}"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 <div th:replace="/fragments/jslibs :: ${application.isDevMode} ? 'dev' : 'prod'"></div>
+<script th:src="@{/bower_components/jquery-backstretch/jquery.backstretch.min.js}"></script>
 <script type="text/javascript">
     $(function () {
-        runAllForms();
-        $("#register-form").auiValidate({
+
+        $.backstretch([
+            "img/bg/4.jpg",
+            "img/bg/5.jpg"
+        ], {
+            fade: 1000,
+            duration: 5000
+        });
+
+        $("#register").auiValidate({
             rules: {
-                username: {
-                    required: true
+                login: {
+                    required: true,
+                    minlength: 3
                 },
                 email: {
                     required: true,
@@ -102,7 +101,8 @@
                 }
             }
         });
+
     });
 </script>
 </body>
-</html>
+</html> 

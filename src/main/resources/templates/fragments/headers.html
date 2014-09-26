@@ -1,0 +1,65 @@
+<!-- Fragment pour les barres de menu -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<body>
+<!-- Top bar -->
+<div th:fragment="top" class="topbar">
+    <div class="container">
+        <div class="col-md-offset-4 col-md-2 title-bar">
+            <a th:href="@{/}" th:text="#{app.name}"></a>
+        </div>
+        <ul class="loginbar pull-right">
+            <li>
+                <i class="fa fa-clock-o"></i>
+                <a th:with="lastLogin=${#authentication.principal.lastConnection}">
+                    <span th:text="#{last.login}"></span>
+                    <span th:text="${lastLogin != null} ? ${#dates.format(lastLogin)} : #{first.login}"></span></a>
+            </li>
+            <li class="topbar-devider"></li>
+            <li>
+                <i class="fa fa-user"></i>
+                <a sec:authentication="name"></a>
+            </li>
+            <li sec:authorize="hasRole('ADMIN')" class="topbar-devider"></li>
+            <li sec:authorize="hasRole('ADMIN')">
+                <i class="fa fa-group"></i>
+                <a><span th:text="#{role.admin}"></span></a>
+            </li>
+            <li class="topbar-devider"></li>
+            <li>
+                <i class="fa fa-sign-out"></i>
+                <a th:href="@{/logout}" th:text="#{btn.logout}"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Menu fragment -->
+<div th:fragment="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-responsive-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="fa fa-bars"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/}">
+                <img id="logo-brand" th:src="@{/img/sopra-logo.jpg}" alt="Logo"/>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav" th:with="servletPath=${#httpServletRequest.getServletPath()}">
+                <li th:with="linkPath='/'" th:class="${servletPath == linkPath} ? 'active'">
+                    <a th:href="@{${linkPath}}"><i class="fa fa-home"></i> <span th:text="#{home.menu}"></span></a>
+                </li>
+                <li th:with="linkPath='/project'" th:class="${servletPath == linkPath} ? 'active'">
+                    <a th:href="@{${linkPath}}"><i class="fa fa-tasks"></i> <span th:text="#{project.menu}"></span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

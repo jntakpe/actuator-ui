@@ -2,19 +2,17 @@ package com.github.jntakpe.service;
 
 import com.github.jntakpe.domain.User;
 import com.github.jntakpe.repository.UserRepository;
+import com.github.jntakpe.util.SecurityUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Date;
 
 /**
  * Services associés à l'entité
@@ -50,10 +48,11 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("L'utilisateur " + login + " est introuvable");
         }
-        Collection<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority("USER"));
-        LOG.debug("Authentification de l'utilisateur '{}' avec les droits : {}", user.getLogin(), roles);
-        return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), roles);
+        LOG.debug("Authentification de l'utilisateur '{}'", user.getLogin());
+        Date lastConnection = user.getLastConnection();
+        user.setLastConnection(new Date());
+        userRepository.save(user);
+        return new SecurityUser(user.getLogin(), user.getPassword(), user.getId(), lastConnection);
     }
 
     /**
