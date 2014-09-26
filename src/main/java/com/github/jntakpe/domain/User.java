@@ -30,7 +30,16 @@ public class User extends MongoEntity {
     @Transient
     private String confirmPassword;
 
-    private Date lastConnection;
+    private Date lastConnection = new Date();
+
+    public User() {
+    }
+
+    public User(String login, String email, String password) {
+        this.login = login;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getLogin() {
         return login;

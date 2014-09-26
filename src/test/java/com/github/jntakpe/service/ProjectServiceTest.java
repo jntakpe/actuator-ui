@@ -2,12 +2,13 @@ package com.github.jntakpe.service;
 
 import com.github.jntakpe.config.ActuatorUiConfig;
 import com.github.jntakpe.domain.Project;
-import com.github.jntakpe.repository.ProjectRepository;
 import com.github.jntakpe.util.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,19 +23,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ProjectServiceTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private ProjectRepository projectRepository;
+    private ProjectService projectService;
 
-    //TODO to delete
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
+    @BeforeClass
+    public void setUp() {
+        mongoTemplate.dropCollection(Project.class);
+        Project aui = new Project("AUI", "Actuator UI", "1.0.0-SNAPSHOT", "http://localhost:8080/aui");
+        Project tft = new Project("TFT", "TforTools", "1.0.0-SNAPSHOT", "http://localhost:8080/tft");
+        mongoTemplate.save(aui);
+        mongoTemplate.save(tft);
+    }
+
     @Test
-    public void mongoTest() {
-        projectRepository.deleteAll();
-        Project aui = new Project("AUI", "SP", "1.0.0", "htttp///sdf");
-        Project sp = new Project("eers", "ss", "1.0.0", "htttp///sdf");
-        projectRepository.save(aui);
-        projectRepository.save(sp);
-        assertThat(projectRepository.count()).isEqualTo(2L);
-        assertThat(projectRepository.findAll()).contains(aui).contains(sp);
-        projectRepository.deleteAll();
+    public void findAllTest_ShouldFind() {
+        assertThat(projectService.findAll()).hasSize(2);
     }
 
 }

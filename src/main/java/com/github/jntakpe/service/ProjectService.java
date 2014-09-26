@@ -1,5 +1,6 @@
 package com.github.jntakpe.service;
 
+import com.github.jntakpe.domain.Project;
 import com.github.jntakpe.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,12 +11,14 @@ import org.springframework.stereotype.Service;
  * @author jntakpe
  */
 @Service
-public class ProjectService {
+public class ProjectService extends MongoAbstractService<Project> {
 
     private final ProjectRepository projectRepository;
 
     @Autowired
     public ProjectService(ProjectRepository projectRepository) {
+        super(projectRepository);
         this.projectRepository = projectRepository;
     }
+
 }

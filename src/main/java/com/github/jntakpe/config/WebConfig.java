@@ -1,6 +1,7 @@
 package com.github.jntakpe.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +13,7 @@ import javax.servlet.ServletContext;
  * @author jntakpe
  */
 @Configuration
+@ConditionalOnWebApplication
 public class WebConfig {
 
     public static final String DEV_MODE_ATTR = "isDevMode";

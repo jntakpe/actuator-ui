@@ -1,6 +1,10 @@
 package com.github.jntakpe.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.URL;
+
+import javax.validation.constraints.Size;
 
 /**
  * Bean représentant un projet monitoré
@@ -9,12 +13,16 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 public class Project extends MongoEntity {
 
+    @NotEmpty
+    @Size(min = 3)
     private String name;
 
     private String description;
 
     private String version;
 
+    @NotEmpty
+    @URL
     private String url;
 
     public Project(String name, String description, String version, String url) {
