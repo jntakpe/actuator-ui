@@ -92,8 +92,8 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void findByEmailIgnoreCaseTest_ShouldNotFind() {
-        assertThat(userService.findByEmailIgnoreCase("tata@mail.com")).isNotNull();
-        assertThat(userService.findByEmailIgnoreCase("tata@mail.com ")).isNotNull();
-        assertThat(userService.findByEmailIgnoreCase(" tata@mail.com ")).isNotNull();
+        assertThat(userService.findByEmailIgnoreCase("haha@mail.com")).isNull();
+        assertThat(userService.findByEmailIgnoreCase("titi@mail.com ")).isNull();
+        assertThat(userService.findByEmailIgnoreCase(" titi@mail.com ")).isNull();
     }
 }
