@@ -10,6 +10,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -80,11 +81,36 @@ public class SecurityController {
     public ModelAndView register(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             if (!user.getPassword().equals(user.getConfirmPassword())) {
-                result.addError(new FieldError("user", "confirmPassword", messageManager.getMessage("error.register.confirm.password")));
+                String message = messageManager.getMessage("error.register.confirm.password");
+                result.addError(new FieldError("user", "confirmPassword", message));
             }
             return new ModelAndView(REGISTER_VIEW);
         }
         userService.create(user);
         return new ModelAndView(new RedirectView(LOGIN_VIEW));
+    }
+
+    /**
+     * Indique si ce login est libre
+     *
+     * @param login login controlé
+     * @return true si le login est libre
+     */
+    @ResponseBody
+    @RequestMapping(value = "/register/available/login")
+    public boolean loginAvailable(String login) {
+        return userService.findByLoginIgnoreCase(login) == null;
+    }
+
+    /**
+     * Indique si cette adresse mail est libre
+     *
+     * @param email adresse mail controlée
+     * @return true si l'adresse mail est libre
+     */
+    @ResponseBody
+    @RequestMapping(value = "/register/available/email")
+    public boolean emailAvailable(String email) {
+        return userService.findByEmailIgnoreCase(email) == null;
     }
 }

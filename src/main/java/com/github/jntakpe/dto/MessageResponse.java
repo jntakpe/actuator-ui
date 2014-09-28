@@ -1,11 +1,11 @@
 package com.github.jntakpe.dto;
 
 /**
- * Objet définissant un message renvoyé à une vue
+ * Objet définissant un message renvoyé à une vue pour définir le statut d'une opération
  *
  * @author jntakpe
  */
-public class MessageResponse {
+public final class MessageResponse {
 
     private final boolean success;
 
@@ -14,6 +14,10 @@ public class MessageResponse {
     private MessageResponse(boolean success, String message) {
         this.success = success;
         this.message = message;
+    }
+
+    public static MessageResponse success() {
+        return new MessageResponse(true, null);
     }
 
     public static MessageResponse success(String message) {

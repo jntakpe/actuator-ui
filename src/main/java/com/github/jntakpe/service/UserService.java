@@ -1,6 +1,8 @@
 package com.github.jntakpe.service;
 
 import com.github.jntakpe.domain.User;
+import com.github.jntakpe.exception.AuiException;
+import com.github.jntakpe.exception.FunctionnalCode;
 import com.github.jntakpe.repository.UserRepository;
 import com.github.jntakpe.util.SecurityUser;
 import org.slf4j.Logger;
@@ -63,6 +65,12 @@ public class UserService implements UserDetailsService {
      * @return l'utilisateur créé
      */
     public User create(User user) {
+        if (findByLoginIgnoreCase(user.getLogin()) != null) {
+            throw AuiException.createInstance(FunctionnalCode.UNIQUE_CONSTRAINT_VIOLATION, user.getLogin(), "login");
+        }
+        if (findByEmailIgnoreCase(user.getEmail()) != null) {
+            throw AuiException.createInstance(FunctionnalCode.UNIQUE_CONSTRAINT_VIOLATION, user.getEmail(), "email");
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user = userRepository.save(user);
         LOG.info("Création de l'utilisateur {}", user.getLogin());
