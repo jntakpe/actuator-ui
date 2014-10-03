@@ -82,11 +82,13 @@
             rules: {
                 login: {
                     required: true,
-                    minlength: 3
+                    minlength: 3,
+                    remote: 'register/available/login'
                 },
                 email: {
                     required: true,
-                    email: true
+                    email: true,
+                    remote: 'register/available/email'
                 },
                 password: {
                     required: true,
