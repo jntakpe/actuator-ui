@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.URL;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -21,16 +22,13 @@ public class Project extends MongoEntity {
 
     private String version;
 
-    @NotEmpty
     @URL
     private String url;
 
-    public Project(String name, String description, String version, String url) {
-        this.name = name;
-        this.description = description;
-        this.version = version;
-        this.url = url;
-    }
+    @NotNull
+    private Integer interval;
+
+    private boolean active;
 
     public String getName() {
         return name;
@@ -62,6 +60,22 @@ public class Project extends MongoEntity {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getInterval() {
+        return interval;
+    }
+
+    public void setInterval(int interval) {
+        this.interval = interval;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override

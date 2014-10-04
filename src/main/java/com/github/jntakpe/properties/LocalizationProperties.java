@@ -1,4 +1,4 @@
-package com.github.jntakpe.config.properties;
+package com.github.jntakpe.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

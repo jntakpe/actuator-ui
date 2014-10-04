@@ -1,23 +1,23 @@
 {
-    "name": "actuator-ui",
-    "version": "1.0.0-SNAPSHOT",
-    "dependencies": {
-      "jquery": "2.1.1",
-        "jquery-ui": "latest",
-        "bootstrap": "3.2.0",
-        "angular": "latest",
-        "angular-resource": "latest",
-        "moment": "latest",
-        "font-awesome": "4.1.0",
-        "select2": "latest",
-        "datatables": "latest",
-        "jquery.easy-pie-chart": "latest",
-        "jquery-validation": "latest",
-        "jquery.maskedinput": "latest",
-        "jquery-backstretch": "latest",
-        "perfect-scrollbar": "latest"
-    },
-    "resolutions": {
-      "jquery": "2.1.1"
-    }
+  "name": "actuator-ui",
+  "version": "1.0.0-SNAPSHOT",
+  "dependencies": {
+    "jquery": "latest",
+    "jquery-ui": "latest",
+    "bootstrap": "latest",
+    "angular": "latest",
+    "angular-resource": "latest",
+    "moment": "latest",
+    "font-awesome": "4.1.0",
+    "select2": "latest",
+    "datatables": "latest",
+    "jquery.easy-pie-chart": "latest",
+    "jquery-validation": "latest",
+    "jquery.maskedinput": "latest",
+    "jquery-backstretch": "latest",
+    "perfect-scrollbar": "latest"
+  },
+  "resolutions": {
+    "jquery": "2.1.1"
+  }
 }

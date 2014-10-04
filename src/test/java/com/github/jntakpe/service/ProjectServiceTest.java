@@ -31,8 +31,10 @@ public class ProjectServiceTest extends AbstractTestNGSpringContextTests {
     @BeforeClass
     public void setUp() {
         mongoTemplate.dropCollection(Project.class);
-        Project aui = new Project("AUI", "Actuator UI", "1.0.0-SNAPSHOT", "http://localhost:8080/aui");
-        Project tft = new Project("TFT", "TforTools", "1.0.0-SNAPSHOT", "http://localhost:8080/tft");
+        Project aui = new Project();
+        aui.setName("AUI");
+        Project tft = new Project();
+        tft.setName("TFT");
         mongoTemplate.save(aui);
         mongoTemplate.save(tft);
     }

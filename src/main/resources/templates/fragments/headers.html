@@ -54,7 +54,7 @@
                     <a th:href="@{${linkPath}}"><i class="fa fa-home"></i> <span th:text="#{home.menu}"></span></a>
                 </li>
                 <li th:with="linkPath='/project'" th:class="${servletPath == linkPath} ? 'active'">
-                    <a th:href="@{${linkPath}}"><i class="fa fa-tasks"></i> <span th:text="#{project.menu}"></span></a>
+                    <a th:href="@{${linkPath}}"><i class="fa fa-tasks"></i> <span th:text="#{projects.menu}"></span></a>
                 </li>
             </ul>
         </div>
