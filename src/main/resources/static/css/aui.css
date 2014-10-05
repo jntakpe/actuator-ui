@@ -5,3 +5,7 @@
 .header .topbar {
     padding-bottom: 0;
 }
+
+.page-content {
+    padding-top: 25px;
+}

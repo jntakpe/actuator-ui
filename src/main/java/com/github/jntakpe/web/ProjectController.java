@@ -8,10 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -70,6 +67,18 @@ public class ProjectController {
     public ModelAndView displayEdit(@PathVariable String id) {
         Project project = Constants.NEW_ID.equals(id) ? new Project() : projectService.findOne(id);
         return new ModelAndView(EDIT_VIEW_PATH).addObject(project);
+    }
+
+    /**
+     * Test une url afin de récupérer la configuration de Spring Actuator associée
+     *
+     * @param url url à tester
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/actuator", method = RequestMethod.GET)
+    public String actuatorTest(@RequestParam String url) {
+        return projectService.testActuator(url);
     }
 
     /**

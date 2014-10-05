@@ -23,11 +23,11 @@
                 </a>
             </p>
 
-            <div th:if="${simpleMessage != null}"
-                 th:class="${simpleMessage.success} ? 'alert alert-dismissable alert-success' : 'alert alert-dismissable alert-danger'">
+            <div th:if="${messageResponse != null}"
+                 th:class="${messageResponse.success} ? 'alert alert-dismissable alert-success' : 'alert alert-dismissable alert-danger'">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <span th:class="${simpleMessage.success} ? 'fa fa-check' : 'fa fa-warning'"></span>
-                <span th:text="${simpleMessage.message}"></span>
+                <span th:class="${messageResponse.success} ? 'fa fa-check' : 'fa fa-warning'"></span>
+                <span th:text="${messageResponse.message}"></span>
             </div>
 
         </div>

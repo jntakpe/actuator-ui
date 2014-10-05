@@ -3,17 +3,33 @@
       layout:decorator="layouts/default-layout"
       th:with="title=#{${#httpServletRequest.getServletPath() == '/project/new' ? 'project.new.title' : 'project.edit.title'}}">
 <body>
-<div layout:fragment="content">
-    <div class="shadow-wrapper margin-bottom-60">
-        <div class="tag-box tag-box-v1 box-shadow shadow-effect-2">
-            <h2>Title Name</h2>
+<div layout:fragment="content" ng-app="editProjectApp">
+    <form action="" class="sky-form" th:object="${project}" ng-controller="formCtrl">
+        <header>General Unify Forms</header>
+        <fieldset>
+            <section>
+                <label class="input">
+                    <input type="text" th:placeholder="#{project.form.name}" th:field="*{name}"/>
+                </label>
+            </section>
+            <section>
+                <label for="url" class="input input-file">
+                    <div class="button">
+                        <input id="url-test" type="text" ng-click="testUrl(url)"/><span
+                            th:text="#{project.form.url.test}"></span>
+                    </div>
+                    <input id="url" type="text" th:placeholder="#{project.form.url}" th:field="*{url}" ng-model="url"/>
+                </label>
+            </section>
+        </fieldset>
 
-            <p>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet consectetur adipiscing elit. Ut non
-                libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
-        </div>
-    </div>
+        <footer>
+            <button type="submit" class="btn-u">Submit</button>
+            <button type="button" class="btn-u btn-u-default" onclick="window.history.back();">Back</button>
+        </footer>
+    </form>
 </div>
-<script layout:fragment="specificjs">
+<script layout:fragment="specificjs" th:src="@{/js/pages/edit-project.js}">
 </script>
 </body>
 </html>

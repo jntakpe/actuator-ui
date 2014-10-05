@@ -1,6 +1,7 @@
 package com.github.jntakpe.web;
 
 import com.github.jntakpe.domain.User;
+import com.github.jntakpe.dto.MessageResponse;
 import com.github.jntakpe.service.UserService;
 import com.github.jntakpe.util.MessageManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public class SecurityController {
     public ModelAndView displayLogin(@RequestParam(required = false) String error) {
         ModelAndView mv = new ModelAndView(LOGIN_VIEW);
         if (error != null) {
-            return mv.addObject("errorMsg", messageManager.getMessage("error.auth"));
+            return mv.addObject(MessageResponse.error(messageManager.getMessage("error.auth")));
         }
         return mv;
     }
