@@ -1,9 +1,10 @@
 package com.github.jntakpe.service;
 
+import com.github.jntakpe.domain.Metrics;
 import com.github.jntakpe.domain.Project;
-import com.github.jntakpe.dto.Metrics;
 import com.github.jntakpe.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,14 +14,19 @@ import org.springframework.web.client.RestTemplate;
  * @author jntakpe
  */
 @Service
-public class ProjectService extends MongoAbstractService<Project> {
+public class ProjectService implements MongoService<Project> {
 
     private final ProjectRepository projectRepository;
 
     @Autowired
     public ProjectService(ProjectRepository projectRepository) {
-        super(projectRepository);
         this.projectRepository = projectRepository;
+    }
+
+
+    @Override
+    public MongoRepository<Project, String> getMongoRepository() {
+        return projectRepository;
     }
 
     public String testActuator(String url) {

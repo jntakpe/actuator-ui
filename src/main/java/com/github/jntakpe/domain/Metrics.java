@@ -1,15 +1,15 @@
-package com.github.jntakpe.dto;
+package com.github.jntakpe.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Bean représentant les résultats de Metrics
+ * Bean représentant les métriques relatives à : JVM, mémoire, processors, gc, etc ...
  *
  * @author jntakpe
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Metrics {
+public class Metrics extends MongoEntity {
 
     private long mem;
 
