@@ -3,6 +3,7 @@ package com.github.jntakpe.domain;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.URL;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,13 +13,12 @@ import javax.validation.constraints.Size;
  *
  * @author jntakpe
  */
+@Document
 public class Project extends MongoEntity {
 
     @NotEmpty
     @Size(min = 3)
     private String name;
-
-    private String description;
 
     private String version;
 
@@ -30,20 +30,14 @@ public class Project extends MongoEntity {
 
     private boolean active;
 
+    private UpdateRate updateRate;
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getVersion() {
@@ -62,11 +56,11 @@ public class Project extends MongoEntity {
         this.url = url;
     }
 
-    public int getInterval() {
+    public Integer getInterval() {
         return interval;
     }
 
-    public void setInterval(int interval) {
+    public void setInterval(Integer interval) {
         this.interval = interval;
     }
 
@@ -76,6 +70,14 @@ public class Project extends MongoEntity {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public UpdateRate getUpdateRate() {
+        return updateRate;
+    }
+
+    public void setUpdateRate(UpdateRate updateRate) {
+        this.updateRate = updateRate;
     }
 
     @Override

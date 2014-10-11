@@ -70,15 +70,27 @@ public class ProjectController {
     }
 
     /**
-     * Test une url afin de récupérer la configuration de Spring Actuator associée
+     * Teste une url afin de récupérer la configuration de Spring Actuator associée
      *
      * @param url url à tester
-     * @return
+     * @return FIXME return
      */
     @ResponseBody
     @RequestMapping(value = "/actuator", method = RequestMethod.GET)
     public String actuatorTest(@RequestParam String url) {
-        return projectService.testActuator(url);
+        return projectService.findVersion(url);
+    }
+
+    /**
+     * Récupère la version à l'aide d'une URL Spring Actuator
+     *
+     * @param url url à tester
+     * @return la version du projet
+     */
+    @ResponseBody
+    @RequestMapping(value = "/version", method = RequestMethod.GET)
+    public String versionTest(@RequestParam String url) {
+        return projectService.findVersion(url);
     }
 
     /**

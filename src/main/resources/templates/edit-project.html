@@ -13,10 +13,29 @@
                 </label>
             </section>
             <section>
+                <div class="inline-group">
+                    <label class="checkbox"><input name="checkbox-inline" type="checkbox" ng-model="useVersionUrl"/>
+                        <i></i>
+                        <span th:text="#{project.form.has.version.url}"></span>
+                    </label>
+                </div>
+            </section>
+            <section class="clearfix">
+                <label for="version" class="input input-file">
+                    <div class="button" ng-show="useVersionUrl">
+                        <input id="version-test" type="text" ng-click="testVersionUrl(version)"
+                               ng-disabled="lockVersion"/>
+                        <span th:text="#{project.form.version.test}"></span>
+                    </div>
+                    <input id="version" type="text" th:placeholder="#{project.form.version}" th:field="*{version}"
+                           ng-model="version" ng-disabled="lockVersion"/>
+                </label>
+            </section>
+            <section>
                 <label for="url" class="input input-file">
                     <div class="button">
-                        <input id="url-test" type="text" ng-click="testUrl(url)"/><span
-                            th:text="#{project.form.url.test}"></span>
+                        <input id="url-test" type="text" ng-click="testActuatorUrl(url)"/>
+                        <span th:text="#{project.form.url.test}"></span>
                     </div>
                     <input id="url" type="text" th:placeholder="#{project.form.url}" th:field="*{url}" ng-model="url"/>
                 </label>

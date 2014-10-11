@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.Date;
  *
  * @author jntakpe
  */
+@Document
 public class User extends MongoEntity {
 
     @NotEmpty

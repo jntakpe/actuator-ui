@@ -44,10 +44,5 @@ public class ProjectServiceTest extends AbstractTestNGSpringContextTests {
         assertThat(projectService.findAll()).hasSize(2);
     }
 
-    //FIXME temporaire à supprimer
-    @Test
-    public void metricsTest() {
-        projectService.testActuator("http://localhost:8180/tft/manage/metrics");
-    }
 
 }

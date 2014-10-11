@@ -1,7 +1,7 @@
 package com.github.jntakpe.service;
 
-import com.github.jntakpe.domain.Metrics;
 import com.github.jntakpe.domain.Project;
+import com.github.jntakpe.dto.InfoEndpoint;
 import com.github.jntakpe.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -23,21 +23,21 @@ public class ProjectService implements MongoService<Project> {
         this.projectRepository = projectRepository;
     }
 
+    /**
+     * Récupère la version d'un projet à l'aide de l'url d'info
+     *
+     * @param url url d'info
+     * @return la version du projet
+     */
+    public String findVersion(String url) {
+        return new RestTemplate().getForObject(url, InfoEndpoint.class).getVersion();
+    }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MongoRepository<Project, String> getMongoRepository() {
         return projectRepository;
-    }
-
-    public String testActuator(String url) {
-        RestTemplate restTemplate = new RestTemplate();
-        Metrics test = restTemplate.getForObject(url, Metrics.class);
-        return "yeah";
-    }
-
-    public Metrics findMetrics(String url) {
-        RestTemplate restTemplate = new RestTemplate();
-        Metrics metrics = restTemplate.getForObject(url, Metrics.class);
-        return metrics;
     }
 }
