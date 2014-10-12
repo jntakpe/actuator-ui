@@ -5,8 +5,10 @@
     "jquery": "latest",
     "jquery-ui": "latest",
     "bootstrap": "latest",
-    "angular": "latest",
-    "angular-resource": "latest",
+    "angular": "~1.3.0",
+    "angular-messages": "~1.3.0",
+    "angular-resource": "~1.3.0",
+    "angular-ui-bootstrap": "latest",
     "moment": "latest",
     "font-awesome": "4.1.0",
     "select2": "latest",
@@ -18,6 +20,7 @@
     "perfect-scrollbar": "latest"
   },
   "resolutions": {
-    "jquery": "2.1.1"
+    "jquery": "2.1.1",
+    "angular": "1.3.0-rc.5"
   }
 }

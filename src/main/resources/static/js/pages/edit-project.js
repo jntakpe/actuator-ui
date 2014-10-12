@@ -1,4 +1,4 @@
-var editProjectApp = angular.module('editProjectApp', []);
+var editProjectApp = angular.module('editProjectApp', ['ngMessages']);
 
 editProjectApp.service('dataService', ['$http', function ($http) {
     "use strict";
@@ -25,4 +25,8 @@ editProjectApp.controller('formCtrl', ['$scope', 'dataService', function ($scope
             $scope.version = data;
         });
     };
+
+    $scope.$watch('useVersionUrl', function () {
+        $scope.version = '';
+    });
 }]);

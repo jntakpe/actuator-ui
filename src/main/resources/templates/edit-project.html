@@ -4,12 +4,11 @@
       th:with="title=#{${#httpServletRequest.getServletPath() == '/project/new' ? 'project.new.title' : 'project.edit.title'}}">
 <body>
 <div layout:fragment="content" ng-app="editProjectApp">
-    <form action="" class="sky-form" th:object="${project}" ng-controller="formCtrl">
-        <header>General Unify Forms</header>
+    <form name="project" action="" class="sky-form" th:object="${project}" ng-controller="formCtrl">
         <fieldset>
             <section>
                 <label class="input">
-                    <input type="text" th:placeholder="#{project.form.name}" th:field="*{name}"/>
+                    <input type="text" th:placeholder="#{project.form.name}" th:field="*{name}" required="required"/>
                 </label>
             </section>
             <section>
@@ -23,12 +22,11 @@
             <section class="clearfix">
                 <label for="version" class="input input-file">
                     <div class="button" ng-show="useVersionUrl">
-                        <input id="version-test" type="text" ng-click="testVersionUrl(version)"
-                               ng-disabled="lockVersion"/>
+                        <input id="version-test" type="text" ng-click="testVersionUrl(version)"/>
                         <span th:text="#{project.form.version.test}"></span>
                     </div>
                     <input id="version" type="text" th:placeholder="#{project.form.version}" th:field="*{version}"
-                           ng-model="version" ng-disabled="lockVersion"/>
+                           ng-model="version" required="required"/>
                 </label>
             </section>
             <section>
