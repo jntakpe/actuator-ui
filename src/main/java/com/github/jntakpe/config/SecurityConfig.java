@@ -1,86 +1,68 @@
 package com.github.jntakpe.config;
 
-import com.github.jntakpe.config.security.Authorities;
-import com.github.jntakpe.service.UserService;
+import com.github.jntakpe.config.security.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 /**
- * Configuration de Spring Security
+ * Configuration de Spring security
  *
  * @author jntakpe
  */
 @Configuration
-@EnableWebMvcSecurity
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserService userService;
+    private Http401UnauthorizedEntryPoint http401UnauthorizedEntryPoint;
 
     @Autowired
-    private AuthenticationEntryPoint authenticationEntryPoint;
+    private AjaxAuthenticationSuccessHandler successHandler;
 
     @Autowired
-    private AuthenticationSuccessHandler authenticationSuccessHandler;
+    private AjaxAuthenticationFailureHandler failureHandler;
 
     @Autowired
-    private AuthenticationFailureHandler authenticationFailureHandler;
+    private AjaxLogoutSuccessHandler logoutSuccessHandler;
 
     @Autowired
-    private LogoutSuccessHandler logoutSuccessHandler;
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new StandardPasswordEncoder();
+    public void configureGlobal(AuthenticationManagerBuilder authBuilder) throws Exception {
+        authBuilder.inMemoryAuthentication()
+                .withUser("jntakpe").password("test").roles("ADMIN", "USER").and()
+                .withUser("toto").password("test").roles("USER");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/bower_components/**", "/img/**", "/css/**", "/js/**", "/fonts/**", "/views/**");
+        web.ignoring()
+                .antMatchers("/static/**")
+                .antMatchers("/views/**");
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
-                .and().rememberMe()
-                .and().formLogin()
-                    .loginProcessingUrl("/authentication")
-                    .loginPage("/")
-                    .successHandler(authenticationSuccessHandler)
-                    .failureHandler(authenticationFailureHandler)
-                    .permitAll()
-                .and().logout()
-                    .logoutUrl("/logout")
-                    .logoutSuccessHandler(logoutSuccessHandler)
-                    .permitAll()
-                .and()
-                    .csrf().disable()
-                    .headers().frameOptions().disable()
-                .authorizeRequests()
-                    .antMatchers("/manage/**").hasAuthority(Authorities.ADMIN.name())
-                    .antMatchers("/**").authenticated();
-        http.authorizeRequests().antMatchers("/register/**").permitAll().anyRequest().authenticated();
+    public void configure(HttpSecurity http) throws Exception {
         http
-                .formLogin().loginPage("/login").loginProcessingUrl("/authenticate").defaultSuccessUrl("/").permitAll().
-                failureUrl("/login?error=authfail").and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/login").deleteCookies("JSESSIONID").permitAll().and()
-                .rememberMe().and().csrf().disable();
+                .exceptionHandling().authenticationEntryPoint(http401UnauthorizedEntryPoint).and()
+                .rememberMe().and()
+                .formLogin().loginProcessingUrl("/login").loginPage("/").successHandler(successHandler)
+                .failureHandler(failureHandler).permitAll().and()
+                .logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler).permitAll().and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .csrf().disable()
+                .headers().disable()
+                .authorizeRequests()
+                .antMatchers("/**").authenticated()
+                .antMatchers("/admin/**").hasAuthority(Authorities.ADMIN.name());
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
-    }
+
 }
