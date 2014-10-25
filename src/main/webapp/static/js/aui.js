@@ -4,10 +4,9 @@ auiApp.config(['$routeProvider',
     function ($routeProvider) {
         "use strict";
         $routeProvider
-            .when('/home', {templateUrl: 'views/home.html', controller: 'HomeController'})
             .when('/', {templateUrl: 'views/login.html', controller: 'LoginController'})
+            .when('/home', {templateUrl: 'views/home.html', controller: 'HomeController'})
             .when('/logout', {templateUrl: 'views/login.html', controller: 'LogoutController'})
-            .when('/projects', {templateUrl: 'views/project.html', controller: 'ProjectController'})
             .otherwise({redirectTo: '/home'});
     }]).run(['$rootScope', '$location', 'AuiAuthService', 'UserResource',
     function ($rootScope, $location, AuiAuthService, UserResource) {
