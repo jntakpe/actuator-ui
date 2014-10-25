@@ -19,7 +19,6 @@ spring:
       uri: mongodb://localhost/aui
   thymeleaf:
     cache: false
-
 ---
 
 spring:

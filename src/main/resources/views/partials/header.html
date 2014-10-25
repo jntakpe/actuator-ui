@@ -1,0 +1,51 @@
+<div class="header">
+    <div class="topbar">
+        <div class="container">
+            <ul class="loginbar pull-right">
+                <li>
+                    <i class="fa fa-user"></i>
+                    <a>{{user.login}}</a>
+                </li>
+                <li class="topbar-devider"></li>
+                <li>
+                    <i class="fa fa-users"></i>
+                    <a ng-if="user.admin">Administrateur</a>
+                    <a ng-if="!user.admin">Utilisateur</a>
+                </li>
+                <li class="topbar-devider"></li>
+                <li>
+                    <i class="fa fa-sign-out"></i>
+                    <a href="#/logout">DÉCONNEXION</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="fa fa-bars"></span>
+                </button>
+                <a class="navbar-brand" href="#/home">
+                    <img id="logo-header" src="img/logo-sopra.jpg" width="150px" height="50px" alt="Logo">
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#/home"><i class="fa fa-home"></i> Portail</a>
+                    </li>
+                    <li>
+                        <a href="#/tasks"><i class="fa"></i> Tâches</a>
+                    </li>
+                    <li>
+                        <a href="#/employee"><i class="fa"></i> Collaborateurs</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

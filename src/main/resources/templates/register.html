@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="title=#{register.title}, css='login-register'">
+<head th:replace="/fragments/head :: ${application.isDevMode} ? 'dev' : 'prod'"></head>
+<body>
+<div class="container">
+    <div class="reg-block">
+        <div class="reg-block-header">
+            <h2 th:text="#{register.title}"></h2>
+
+            <ul class="social-icons text-center margin-bottom-10">
+                <li><a class="rounded-x social_github" data-original-title="Github"
+                       href="https://github.com/jntakpe"></a></li>
+                <li><a class="rounded-x social_twitter" data-original-title="Twitter"
+                       href="https://twitter.com/jntakpe"></a></li>
+            </ul>
+            <p>
+                <span th:text="#{register.logon.msg}"></span>
+                <a th:href="@{/login}">
+                    <span class="label label-red">
+                        <i class="fa fa-sign-in"></i> <span th:text="#{register.logon}"></span>
+                    </span>
+                </a>
+            </p>
+        </div>
+        <form id="register" th:action="@{/register}" class="sky-form" method="post" th:object="${user}"
+              ng-app="registerApp">
+            <div class="form-group">
+                <div class="input-group margin-bottom-20">
+                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                    <input class="form-control" th:field="*{login}" th:placeholder="#{register.login}" type="text"
+                           required="true" maxlength="50"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group margin-bottom-20">
+                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                    <input class="form-control" th:field="*{email}" th:placeholder="#{register.email}" type="email"
+                           required="true"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group margin-bottom-20">
+                    <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                    <input class="form-control" th:field="*{password}" th:placeholder="#{register.password}"
+                           type="password"
+                           required="true" maxlength="100"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group margin-bottom-30">
+                    <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                    <input class="form-control" name="confirmPassword" th:placeholder="#{register.confirmPassword}"
+                           type="password"
+                           required="true" maxlength="100"/>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <button type="submit" class="btn-u btn-block"><i class="fa fa-plus"></i> <span
+                            th:text="#{register.btn.signin}"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="/fragments/jslibs :: ${application.isDevMode} ? 'dev' : 'prod'"></div>
+<script th:src="@{/bower_components/jquery-backstretch/jquery.backstretch.min.js}"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $.backstretch([
+            "img/bg/4.jpg",
+            "img/bg/5.jpg"
+        ], {
+            fade: 1000,
+            duration: 5000
+        });
+
+        $("#register").auiValidate({
+            rules: {
+                login: {
+                    required: true,
+                    minlength: 3,
+                    remote: 'register/available/login'
+                },
+                email: {
+                    required: true,
+                    email: true,
+                    remote: 'register/available/email'
+                },
+                password: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 20
+                },
+                confirmPassword: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 20,
+                    equalTo: "#password"
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html> 
