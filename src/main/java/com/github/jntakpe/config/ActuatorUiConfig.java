@@ -35,6 +35,7 @@ public class ActuatorUiConfig extends SpringBootServletInitializer {
      */
     public static void main(String[] args) {
         LOG.debug("Démarrage de l'application en mode 'embedded'");
+        currentProfile = Profile.EMBEDDED;
         new SpringApplication(ActuatorUiConfig.class).run(args);
     }
 
